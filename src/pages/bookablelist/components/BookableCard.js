@@ -1,7 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const BookableCard = ({ product }) => {
+  const navigate = useNavigate();
   const { name, types } = product;
+
+  const clickBookingBtn = () => {
+    navigate(`/bookin`);
+  };
 
   return (
     <CardContainer>
@@ -11,9 +17,9 @@ const BookableCard = ({ product }) => {
           return (
             <div className="type" key={type.type}>
               <span>{type.type}</span>
-              <ReservationBtn disabled={type.time.length ? false : true}>
+              <BookingBtn disabled={type.time.length ? false : true} onClick={clickBookingBtn}>
                 {type.time.length ? '예약하기' : '예약마감'}
-              </ReservationBtn>
+              </BookingBtn>
             </div>
           );
         })}
@@ -47,7 +53,7 @@ const CardContainer = styled.div`
   }
 `;
 
-const ReservationBtn = styled.button`
+const BookingBtn = styled.button`
   width: 100px;
   height: 28px;
   background-color: ${({ theme }) => theme.mainBgColor};
