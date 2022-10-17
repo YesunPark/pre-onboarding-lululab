@@ -22,6 +22,9 @@ const BookableList = () => {
   );
 };
 
-const ListContainer = styled.div``;
+const ListContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export default BookableList;
