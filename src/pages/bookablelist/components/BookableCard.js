@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 const BookableCard = ({ product }) => {
   const navigate = useNavigate();
-  const { name, types } = product;
+  const { id, name, types } = product;
 
-  const clickBookingBtn = () => {
-    navigate(`/bookin`);
+  const clickBookingBtn = (type) => {
+    navigate(`/booking/${id}?type=${type}`);
   };
 
   return (
@@ -17,7 +17,12 @@ const BookableCard = ({ product }) => {
           return (
             <div className="type" key={type.type}>
               <span>{type.type}</span>
-              <BookingBtn disabled={type.time.length ? false : true} onClick={clickBookingBtn}>
+              <BookingBtn
+                disabled={type.time.length ? false : true}
+                onClick={() => {
+                  clickBookingBtn(type.type);
+                }}
+              >
                 {type.time.length ? '예약하기' : '예약마감'}
               </BookingBtn>
             </div>
