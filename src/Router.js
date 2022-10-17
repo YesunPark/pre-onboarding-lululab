@@ -14,9 +14,9 @@ const Router = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<BookableList />} />
-          <Route path='/booking' element={<Booking />} />
-          <Route path='/booking-list' element={<BookingList />} />
+          <Route path="/" element={<BookableList />} />
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/booking-list" element={<BookingList />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
