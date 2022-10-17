@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import BookableCard from './components/BookableCard';
 
 const BookableList = () => {
   const [bookableProducts, setBookableProducts] = useState([]);
@@ -12,15 +13,15 @@ const BookableList = () => {
   }, []);
 
   return (
-    <Container>
+    <ListContainer>
       {bookableProducts.length &&
         bookableProducts.map((product) => {
-          return <div key={product.id}>{product.name}</div>;
+          return <BookableCard key={product.id} product={product} />;
         })}
-    </Container>
+    </ListContainer>
   );
 };
 
-const Container = styled.div``;
+const ListContainer = styled.div``;
 
 export default BookableList;
