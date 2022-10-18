@@ -63,58 +63,56 @@ const Booking = () => {
   };
 
   return (
-    <>
-      <Container>
-        <div className="name">{bookingInfo.name}</div>
-        <div>
-          <span className="title">예약자 이름</span>
-          <input className="booking-info" onChange={handleNameInput} />
-        </div>
-        <div>
-          <span className="title">예약 가능 종류</span>
-          <select id="type" className="booking-info" value={userHandledInfo.type} onChange={handleSelectBox}>
-            {bookingInfo.types.map((type) => {
-              if (type.time.length) {
-                return <option key={type.type}>{type.type}</option>;
-              }
-            })}
-          </select>
-        </div>
-        <div>
-          <span className="title">예약 가능 시간</span>
-          <select id="time" className="booking-info" value={userHandledInfo.time} onChange={handleSelectBox} required>
-            <option className="select-holder">선택해주세요</option>
-            {bookableTimes.map((time) => {
-              return <option key={time}>{time}:00</option>;
-            })}
-          </select>
-        </div>
-        <BookingBtn
-          className="booking-btn"
-          onClick={() => {
-            setOpenBookingModal(true);
-          }}
-          disabled={userHandledInfo.name && userHandledInfo.time !== '선택해주세요' ? false : true}
-        >
-          예약하기
-        </BookingBtn>
-        <BookingBtn
-          onClick={() => {
-            window.localStorage.removeItem('booked');
-          }}
-        >
-          예약취소하기
-        </BookingBtn>
-        <br />
-        <br />
-        <BookingBtn className="no-show-btn" onClick={handleNoShowBtn}>
-          {isNoShowUser
-            ? '현재 노쇼고객입니다.\n노쇼고객이 아닌 경우로\n테스트하기'
-            : '현재 노쇼고객이 아닙니다.\n노쇼고객인 경우로 \n 테스트하기'}
-        </BookingBtn>
-        {openBookingModal && <BookingModal setOpenBookingModal={setOpenBookingModal} isNoShowUser={isNoShowUser} />}
-      </Container>
-    </>
+    <Container>
+      <div className="name">{bookingInfo.name}</div>
+      <div>
+        <span className="title">예약자 이름</span>
+        <input className="booking-info" onChange={handleNameInput} />
+      </div>
+      <div>
+        <span className="title">예약 가능 종류</span>
+        <select id="type" className="booking-info" value={userHandledInfo.type} onChange={handleSelectBox}>
+          {bookingInfo.types.map((type) => {
+            if (type.time.length) {
+              return <option key={type.type}>{type.type}</option>;
+            }
+          })}
+        </select>
+      </div>
+      <div>
+        <span className="title">예약 가능 시간</span>
+        <select id="time" className="booking-info" value={userHandledInfo.time} onChange={handleSelectBox} required>
+          <option className="select-holder">선택해주세요</option>
+          {bookableTimes.map((time) => {
+            return <option key={time}>{time}:00</option>;
+          })}
+        </select>
+      </div>
+      <BookingBtn
+        className="booking-btn"
+        onClick={() => {
+          setOpenBookingModal(true);
+        }}
+        disabled={userHandledInfo.name && userHandledInfo.time !== '선택해주세요' ? false : true}
+      >
+        예약하기
+      </BookingBtn>
+      <BookingBtn
+        onClick={() => {
+          window.localStorage.removeItem('booked');
+        }}
+      >
+        예약취소하기
+      </BookingBtn>
+      <br />
+      <br />
+      <BookingBtn className="no-show-btn" onClick={handleNoShowBtn}>
+        {isNoShowUser
+          ? '현재 노쇼고객입니다.\n노쇼고객이 아닌 경우로\n테스트하기'
+          : '현재 노쇼고객이 아닙니다.\n노쇼고객인 경우로 \n 테스트하기'}
+      </BookingBtn>
+      {openBookingModal && <BookingModal setOpenBookingModal={setOpenBookingModal} isNoShowUser={isNoShowUser} />}
+    </Container>
   );
 };
 
