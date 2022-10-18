@@ -119,7 +119,7 @@ const Booking = () => {
 const Container = styled.div`
   min-width: 350px;
   max-width: 800px;
-  margin: 50px auto;
+  margin: auto;
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.borderGray};
   border-radius: 5px;
