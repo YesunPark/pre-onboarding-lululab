@@ -7,6 +7,7 @@ const BookableCard = ({ product }) => {
 
   const clickBookingBtn = (type) => {
     navigate(`/booking/${id}?type=${type}`);
+    window.localStorage.removeItem('token');
   };
 
   return (

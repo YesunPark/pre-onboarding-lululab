@@ -12,7 +12,7 @@ const Booking = () => {
   const [bookableTimes, setBookableTimes] = useState([]);
   const [userHandledInfo, setUserHandledInfo] = useState({ name: '', type: '', time: '선택해주세요' });
   const [openBookingModal, setOpenBookingModal] = useState(false);
-  const [isNoShowUser, setIsNoShowUser] = useState(false);
+  const [isNoShowUser, setIsNoShowUser] = useState(true);
 
   const getParameter = (key) => {
     return new URLSearchParams(location.search).get(key);
@@ -55,10 +55,10 @@ const Booking = () => {
   const handleNoShowBtn = () => {
     if (window.localStorage.getItem('token')) {
       window.localStorage.removeItem('token');
-      setIsNoShowUser(false);
-    } else {
-      window.localStorage.setItem('token', 'noShow');
       setIsNoShowUser(true);
+    } else {
+      window.localStorage.setItem('token', 'notNoShow');
+      setIsNoShowUser(false);
     }
   };
 
@@ -90,12 +90,20 @@ const Booking = () => {
           </select>
         </div>
         <BookingBtn
+          className="booking-btn"
           onClick={() => {
             setOpenBookingModal(true);
           }}
           disabled={userHandledInfo.name && userHandledInfo.time !== '선택해주세요' ? false : true}
         >
           예약하기
+        </BookingBtn>
+        <BookingBtn
+          onClick={() => {
+            window.localStorage.removeItem('booked');
+          }}
+        >
+          예약취소하기
         </BookingBtn>
         <br />
         <br />
@@ -143,6 +151,10 @@ const Container = styled.div`
   .title {
     margin-right: 10px;
     font-size: 21px;
+  }
+
+  .booking-btn {
+    margin-right: 10px;
   }
 
   .no-show-btn {
