@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import { BookingBtn } from '../bookablelist/components/BookableCard';
 
 const Booking = () => {
   const params = useParams();
@@ -34,8 +35,6 @@ const Booking = () => {
     });
   }, [userHandledInfo]);
 
-  console.log(userHandledInfo);
-
   const handleNameInput = (e) => {
     setUserHandledInfo({ ...userHandledInfo, name: e.target.value });
   };
@@ -52,14 +51,14 @@ const Booking = () => {
 
   return (
     <Container>
-      <div>{bookingInfo.name}</div>
+      <div className="name">{bookingInfo.name}</div>
       <div>
-        <span>예약자 이름</span>
-        <input onChange={handleNameInput} />
+        <span className="title">예약자 이름</span>
+        <input className="booking-info" onChange={handleNameInput} />
       </div>
       <div>
-        <span>예약 가능 종류</span>
-        <select id="type" value={userHandledInfo.type} onChange={handleSelectBox}>
+        <span className="title">예약 가능 종류</span>
+        <select id="type" className="booking-info" value={userHandledInfo.type} onChange={handleSelectBox}>
           {bookingInfo.types.map((type) => {
             if (type.time.length) {
               return <option key={type.type}>{type.type}</option>;
@@ -68,22 +67,51 @@ const Booking = () => {
         </select>
       </div>
       <div>
-        <span>예약 가능 시간</span>
-        <select id="time" value={userHandledInfo.time} onChange={handleSelectBox} required>
+        <span className="title">예약 가능 시간</span>
+        <select id="time" className="booking-info" value={userHandledInfo.time} onChange={handleSelectBox} required>
           <option className="select-holder">선택해주세요</option>
           {bookableTimes.map((time) => {
             return <option key={time}>{time}:00</option>;
           })}
         </select>
       </div>
-      <button>예약하기</button>
+      <BookingBtn>예약하기</BookingBtn>
     </Container>
   );
 };
 
 const Container = styled.div`
-  .select-holder {
-    display: none;
+  min-width: 350px;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid ${({ theme }) => theme.borderGray};
+  border-radius: 5px;
+
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .booking-info {
+      height: 28px;
+      padding: 0 5px;
+      font-size: 16px;
+    }
+
+    .select-holder {
+      display: none;
+    }
+  }
+
+  .name {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  .title {
+    margin-right: 10px;
+    font-size: 21px;
   }
 `;
 
