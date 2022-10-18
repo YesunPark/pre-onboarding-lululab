@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import { BookingBtn } from '../bookablelist/components/BookableCard';
+import BookingModal from './components/BookingModal';
 
 const Booking = () => {
   const params = useParams();
@@ -10,6 +11,7 @@ const Booking = () => {
   const [bookingInfo, setBookingInfo] = useState({ name: '', types: [] });
   const [bookableTimes, setBookableTimes] = useState([]);
   const [userHandledInfo, setUserHandledInfo] = useState({ name: '', type: '', time: '선택해주세요' });
+  const [openBookingModal, setOpenBookingModal] = useState(false);
 
   const getParameter = (key) => {
     return new URLSearchParams(location.search).get(key);
@@ -75,7 +77,15 @@ const Booking = () => {
           })}
         </select>
       </div>
-      <BookingBtn>예약하기</BookingBtn>
+      <BookingBtn
+        onClick={() => {
+          setOpenBookingModal(true);
+        }}
+        disabled={userHandledInfo.name && userHandledInfo.time !== '선택해주세요' ? false : true}
+      >
+        예약하기
+      </BookingBtn>
+      {openBookingModal && <BookingModal setOpenBookingModal={setOpenBookingModal} />}
     </Container>
   );
 };
