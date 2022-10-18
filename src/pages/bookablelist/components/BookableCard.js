@@ -58,7 +58,7 @@ const CardContainer = styled.div`
   }
 `;
 
-const BookingBtn = styled.button`
+export const BookingBtn = styled.button`
   width: 100px;
   height: 28px;
   background-color: ${({ theme }) => theme.mainBgColor};
