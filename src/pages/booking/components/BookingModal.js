@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { BookingBtn } from '../../bookablelist/components/BookableCard';
 
-const BookingModal = ({ setOpenBookingModal }) => {
+const BookingModal = ({ setOpenBookingModal, isNoShowUser }) => {
   return (
     <ModalContainer>
       <div className="container">
-        <div className="msg">예약이 완료되었습니다.</div>
+        <div className="msg">
+          {!isNoShowUser ? '예약이 완료되었습니다.' : '죄송합니다. 노쇼고객은 예약이 불가합니다.'}
+        </div>
         <BookingBtn
           onClick={() => {
             setOpenBookingModal(false);
@@ -14,7 +16,6 @@ const BookingModal = ({ setOpenBookingModal }) => {
           확인
         </BookingBtn>
       </div>
-      {/* <div>죄송합니다. 노쇼 고객은 예약이 불가합니다. </div> */}
     </ModalContainer>
   );
 };
@@ -31,11 +32,12 @@ const ModalContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 300px;
+    width: 330px;
     height: 180px;
     background-color: #ffff;
     border-radius: 5px;
     margin: auto;
+    padding: 0 20px;
 
     .msg {
     }

@@ -12,6 +12,7 @@ const Booking = () => {
   const [bookableTimes, setBookableTimes] = useState([]);
   const [userHandledInfo, setUserHandledInfo] = useState({ name: '', type: '', time: '선택해주세요' });
   const [openBookingModal, setOpenBookingModal] = useState(false);
+  const [isNoShowUser, setIsNoShowUser] = useState(false);
 
   const getParameter = (key) => {
     return new URLSearchParams(location.search).get(key);
@@ -51,42 +52,61 @@ const Booking = () => {
     }
   };
 
+  const handleNoShowBtn = () => {
+    if (window.localStorage.getItem('token')) {
+      window.localStorage.removeItem('token');
+      setIsNoShowUser(false);
+    } else {
+      window.localStorage.setItem('token', 'noShow');
+      setIsNoShowUser(true);
+    }
+  };
+
   return (
-    <Container>
-      <div className="name">{bookingInfo.name}</div>
-      <div>
-        <span className="title">예약자 이름</span>
-        <input className="booking-info" onChange={handleNameInput} />
-      </div>
-      <div>
-        <span className="title">예약 가능 종류</span>
-        <select id="type" className="booking-info" value={userHandledInfo.type} onChange={handleSelectBox}>
-          {bookingInfo.types.map((type) => {
-            if (type.time.length) {
-              return <option key={type.type}>{type.type}</option>;
-            }
-          })}
-        </select>
-      </div>
-      <div>
-        <span className="title">예약 가능 시간</span>
-        <select id="time" className="booking-info" value={userHandledInfo.time} onChange={handleSelectBox} required>
-          <option className="select-holder">선택해주세요</option>
-          {bookableTimes.map((time) => {
-            return <option key={time}>{time}:00</option>;
-          })}
-        </select>
-      </div>
-      <BookingBtn
-        onClick={() => {
-          setOpenBookingModal(true);
-        }}
-        disabled={userHandledInfo.name && userHandledInfo.time !== '선택해주세요' ? false : true}
-      >
-        예약하기
-      </BookingBtn>
-      {openBookingModal && <BookingModal setOpenBookingModal={setOpenBookingModal} />}
-    </Container>
+    <>
+      <Container>
+        <div className="name">{bookingInfo.name}</div>
+        <div>
+          <span className="title">예약자 이름</span>
+          <input className="booking-info" onChange={handleNameInput} />
+        </div>
+        <div>
+          <span className="title">예약 가능 종류</span>
+          <select id="type" className="booking-info" value={userHandledInfo.type} onChange={handleSelectBox}>
+            {bookingInfo.types.map((type) => {
+              if (type.time.length) {
+                return <option key={type.type}>{type.type}</option>;
+              }
+            })}
+          </select>
+        </div>
+        <div>
+          <span className="title">예약 가능 시간</span>
+          <select id="time" className="booking-info" value={userHandledInfo.time} onChange={handleSelectBox} required>
+            <option className="select-holder">선택해주세요</option>
+            {bookableTimes.map((time) => {
+              return <option key={time}>{time}:00</option>;
+            })}
+          </select>
+        </div>
+        <BookingBtn
+          onClick={() => {
+            setOpenBookingModal(true);
+          }}
+          disabled={userHandledInfo.name && userHandledInfo.time !== '선택해주세요' ? false : true}
+        >
+          예약하기
+        </BookingBtn>
+        <br />
+        <br />
+        <BookingBtn className="no-show-btn" onClick={handleNoShowBtn}>
+          {isNoShowUser
+            ? '현재 노쇼고객입니다.\n노쇼고객이 아닌 경우로\n테스트하기'
+            : '현재 노쇼고객이 아닙니다.\n노쇼고객인 경우로 \n 테스트하기'}
+        </BookingBtn>
+        {openBookingModal && <BookingModal setOpenBookingModal={setOpenBookingModal} isNoShowUser={isNoShowUser} />}
+      </Container>
+    </>
   );
 };
 
@@ -97,6 +117,7 @@ const Container = styled.div`
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.borderGray};
   border-radius: 5px;
+  white-space: pre-wrap;
 
   div {
     display: flex;
@@ -122,6 +143,11 @@ const Container = styled.div`
   .title {
     margin-right: 10px;
     font-size: 21px;
+  }
+
+  .no-show-btn {
+    width: 180px;
+    height: 70px;
   }
 `;
 
