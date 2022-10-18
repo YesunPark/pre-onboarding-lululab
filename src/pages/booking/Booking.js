@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import { BookingBtn } from '../bookablelist/components/BookableCard';
+import BookingModal from './components/BookingModal';
 
 const Booking = () => {
   const params = useParams();
@@ -10,6 +11,8 @@ const Booking = () => {
   const [bookingInfo, setBookingInfo] = useState({ name: '', types: [] });
   const [bookableTimes, setBookableTimes] = useState([]);
   const [userHandledInfo, setUserHandledInfo] = useState({ name: '', type: '', time: '선택해주세요' });
+  const [openBookingModal, setOpenBookingModal] = useState(false);
+  const [isNoShowUser, setIsNoShowUser] = useState(true);
 
   const getParameter = (key) => {
     return new URLSearchParams(location.search).get(key);
@@ -49,6 +52,16 @@ const Booking = () => {
     }
   };
 
+  const handleNoShowBtn = () => {
+    if (window.localStorage.getItem('token')) {
+      window.localStorage.removeItem('token');
+      setIsNoShowUser(true);
+    } else {
+      window.localStorage.setItem('token', 'notNoShow');
+      setIsNoShowUser(false);
+    }
+  };
+
   return (
     <Container>
       <div className="name">{bookingInfo.name}</div>
@@ -75,7 +88,30 @@ const Booking = () => {
           })}
         </select>
       </div>
-      <BookingBtn>예약하기</BookingBtn>
+      <BookingBtn
+        className="booking-btn"
+        onClick={() => {
+          setOpenBookingModal(true);
+        }}
+        disabled={userHandledInfo.name && userHandledInfo.time !== '선택해주세요' ? false : true}
+      >
+        예약하기
+      </BookingBtn>
+      <BookingBtn
+        onClick={() => {
+          window.localStorage.removeItem('booked');
+        }}
+      >
+        예약취소하기
+      </BookingBtn>
+      <br />
+      <br />
+      <BookingBtn className="no-show-btn" onClick={handleNoShowBtn}>
+        {isNoShowUser
+          ? '현재 노쇼고객입니다.\n노쇼고객이 아닌 경우로\n테스트하기'
+          : '현재 노쇼고객이 아닙니다.\n노쇼고객인 경우로 \n 테스트하기'}
+      </BookingBtn>
+      {openBookingModal && <BookingModal setOpenBookingModal={setOpenBookingModal} isNoShowUser={isNoShowUser} />}
     </Container>
   );
 };
@@ -87,6 +123,7 @@ const Container = styled.div`
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.borderGray};
   border-radius: 5px;
+  white-space: pre-wrap;
 
   div {
     display: flex;
@@ -112,6 +149,15 @@ const Container = styled.div`
   .title {
     margin-right: 10px;
     font-size: 21px;
+  }
+
+  .booking-btn {
+    margin-right: 10px;
+  }
+
+  .no-show-btn {
+    width: 180px;
+    height: 70px;
   }
 `;
 
