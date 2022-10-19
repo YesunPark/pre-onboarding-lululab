@@ -13,7 +13,7 @@
     "userName": "홍길동",
     "product": "미백 비타민 관리",
     "type": "상담",
-    "time": 9
+    "time": 17
   },
   {
     "bookingNum": 29886,
@@ -21,7 +21,7 @@
     "userName": "박룰루",
     "product": "윤곽주사",
     "type": "진료",
-    "time": 9
+    "time": 14
   },
   {
     "bookingNum": 32142,
@@ -29,7 +29,7 @@
     "userName": "김수분",
     "product": "수분 필링",
     "type": "시술",
-    "time": 9
+    "time": 10
   },
   {
     "bookingNum": 33665,
@@ -37,7 +37,7 @@
     "userName": "이하얀",
     "product": "산소테라피",
     "type": "시술",
-    "time": 9
+    "time": 18
   },
   {
     "bookingNum": 45268,
@@ -45,6 +45,6 @@
     "userName": "황미백",
     "product": "산소테라피",
     "type": "진료",
-    "time": 9
+    "time": 18
   }
 ]
