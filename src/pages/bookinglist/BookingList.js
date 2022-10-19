@@ -34,6 +34,12 @@ const BookingList = () => {
         <FiSearch size={30} color={theme.mainColor} onClick={handleSearch} />
       </div>
       <CardContainer>
+        <div className="empty-result">예약자 성함 또는 예약번호로 검색해주세요.</div>
+      </CardContainer>
+      <CardContainer>
+        <div className="empty-result">검색 결과가 없습니다.</div>
+      </CardContainer>
+      {/* <CardContainer>
         <div className="title">
           <div>예약번호 :</div>
           <div>예약자 성함 :</div>
@@ -47,7 +53,7 @@ const BookingList = () => {
           <div>토닝/진료</div>
           <div>9:00</div>
         </div>
-      </CardContainer>
+      </CardContainer> */}
     </Container>
   );
 };
@@ -97,6 +103,10 @@ const CardContainer = styled.div`
     font-size: 18px;
     line-height: 30px;
     text-align: right;
+  }
+
+  .empty-result {
+    margin: 30px;
   }
 `;
 
