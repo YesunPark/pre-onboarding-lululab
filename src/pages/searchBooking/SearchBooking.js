@@ -39,7 +39,7 @@ const SearchBooking = () => {
             setSearchInput(e.target.value);
           }}
         ></input>
-        <FiSearch size={30} color={theme.mainColor} onClick={handleSearch} />
+        <FiSearch className="search-icon" size={30} color={theme.mainColor} onClick={handleSearch} />
       </div>
       <CardContainer>
         <div className="sample">
@@ -104,6 +104,11 @@ const Container = styled.div`
       padding: 0 10px;
       border: none;
       font-size: 16px;
+    }
+    .search-icon {
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 `;
