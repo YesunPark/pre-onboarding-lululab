@@ -34,7 +34,7 @@ const BookableCard = ({ product }) => {
   );
 };
 
-export const CardContainer = styled.div`
+const CardContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 480px;
