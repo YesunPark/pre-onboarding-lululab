@@ -4,6 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { BookingBtn } from '../bookablelist/components/BookableCard';
 import BookingModal from './components/BookingModal';
+import CancleModal from './components/CancleModal';
 
 const Booking = () => {
   const params = useParams();
@@ -12,6 +13,7 @@ const Booking = () => {
   const [bookableTimes, setBookableTimes] = useState([]);
   const [userHandledInfo, setUserHandledInfo] = useState({ name: '', type: '', time: '선택해주세요' });
   const [openBookingModal, setOpenBookingModal] = useState(false);
+  const [openCancleModal, setOpenCancleModal] = useState(false);
   const [isNoShowUser, setIsNoShowUser] = useState(true);
 
   const getParameter = (key) => {
@@ -98,7 +100,9 @@ const Booking = () => {
         예약하기
       </BookingBtn>
       <BookingBtn
+        disabled={window.localStorage.getItem('booked') ? false : true}
         onClick={() => {
+          window.localStorage.getItem('booked') && setOpenCancleModal(true);
           window.localStorage.removeItem('booked');
         }}
       >
@@ -112,6 +116,7 @@ const Booking = () => {
           : '현재 노쇼고객이 아닙니다.\n노쇼고객인 경우로 \n 테스트하기'}
       </BookingBtn>
       {openBookingModal && <BookingModal setOpenBookingModal={setOpenBookingModal} isNoShowUser={isNoShowUser} />}
+      {openCancleModal && <CancleModal setOpenCancleModal={setOpenCancleModal} />}
     </Container>
   );
 };
