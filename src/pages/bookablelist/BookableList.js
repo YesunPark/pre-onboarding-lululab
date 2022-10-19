@@ -43,8 +43,8 @@ const ListContainer = styled.div`
     margin: 0 0 20px 16px;
     padding: 12px;
     border: none;
-    border-radius: 5px;
-    background-color: ${({ theme }) => theme.mainBgColor};
+    border-bottom: 5px solid ${({ theme }) => theme.mainColor};
+    background-color: #ffffff;
     font-size: 17px;
     &:hover {
       cursor: pointer;
