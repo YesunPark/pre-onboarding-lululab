@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import { GrCursor } from 'react-icons/gr';
 import BookableCard from './components/BookableCard';
 
 const BookableList = () => {
+  const navigate = useNavigate();
   const [bookableProducts, setBookableProducts] = useState([]);
 
   useEffect(() => {
@@ -14,17 +17,44 @@ const BookableList = () => {
 
   return (
     <ListContainer>
-      {bookableProducts.length &&
-        bookableProducts.map((product) => {
-          return <BookableCard key={product.id} product={product} />;
-        })}
+      <button
+        className="search-btn"
+        onClick={() => {
+          navigate('/search-booking');
+        }}
+      >
+        예약내역 조회하러 가기
+        <GrCursor size={25} />
+      </button>
+      <div className="list">
+        {bookableProducts.length &&
+          bookableProducts.map((product) => {
+            return <BookableCard key={product.id} product={product} />;
+          })}
+      </div>
     </ListContainer>
   );
 };
 
 const ListContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  .search-btn {
+    display: flex;
+    align-items: center;
+    margin: 0 0 20px 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: ${({ theme }) => theme.mainBgColor};
+    font-size: 17px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `;
 
 export default BookableList;

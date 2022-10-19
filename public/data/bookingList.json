@@ -1,0 +1,50 @@
+[
+  {
+    "bookingNum": 12345,
+    "createdAt": "2022-10-10",
+    "userName": "홍길동",
+    "product": "레이저토닝",
+    "type": "상담",
+    "time": 9
+  },
+  {
+    "bookingNum": 21547,
+    "createdAt": "2022-10-11",
+    "userName": "박피부",
+    "product": "미백 비타민 관리",
+    "type": "상담",
+    "time": 17
+  },
+  {
+    "bookingNum": 29886,
+    "createdAt": "2022-10-12",
+    "userName": "박룰루",
+    "product": "윤곽주사",
+    "type": "진료",
+    "time": 14
+  },
+  {
+    "bookingNum": 32142,
+    "createdAt": "2022-10-13",
+    "userName": "김수분",
+    "product": "수분 필링",
+    "type": "시술",
+    "time": 10
+  },
+  {
+    "bookingNum": 33665,
+    "createdAt": "2022-10-14",
+    "userName": "이하얀",
+    "product": "산소테라피",
+    "type": "시술",
+    "time": 18
+  },
+  {
+    "bookingNum": 45268,
+    "createdAt": "2022-10-15",
+    "userName": "황미백",
+    "product": "산소테라피",
+    "type": "진료",
+    "time": 18
+  }
+]
