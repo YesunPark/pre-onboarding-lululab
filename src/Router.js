@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 
 import BookableList from './pages/bookablelist/BookableList';
 import Booking from './pages/booking/Booking';
-import BookingList from './pages/bookinglist/BookingList';
+import SearchBooking from './pages/searchBooking/SearchBooking';
 
 import theme from './styles/theme';
 import GlobalStyle from './styles/GlobalStyle';
@@ -16,7 +16,7 @@ const Router = () => {
         <Routes>
           <Route path="/" element={<BookableList />} />
           <Route path="/booking/:info" element={<Booking />} />
-          <Route path="/booking-list" element={<BookingList />} />
+          <Route path="/search-booking" element={<SearchBooking />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

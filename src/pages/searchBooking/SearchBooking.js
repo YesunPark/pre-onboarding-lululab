@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FiSearch } from 'react-icons/fi';
 import theme from '../../styles/theme';
 
-const BookingList = () => {
+const SearchBooking = () => {
   const [searchInput, setSearchInput] = useState('');
   const [searchResult, setSearchResult] = useState({
     bookingNum: 0,
@@ -138,4 +138,4 @@ const CardContainer = styled.div`
   }
 `;
 
-export default BookingList;
+export default SearchBooking;
