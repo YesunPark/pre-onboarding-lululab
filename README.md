@@ -1,70 +1,128 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# 프로젝트 소개 - 병원예약 시스템
 
-In the project directory, you can run:
+안녕하세요 저스트코드/위코드 **프리온보딩**코스에 참여한 박예선입니다. \
+[룰루랩](https://www.wanted.co.kr/company/1732) 에서 제공받은 기업협업 과제인  병원예약시스템 개발을 진행했습니다.
 
-### `npm start`
+개발기간 : 22.10.17 ~ 22.10.20 (4일)\
+개발인원 : 1명
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br/>
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 프로젝트 실행 방법
+배포링크 :  https://pre-onboarding-lululab-yesunpark.netlify.app/
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+위 링크로 접속하시면 예약가능목록 화면을 보실 수 있습니다. \
+예약하기 버튼을 클릭하면 예약화면으로, \
+상단의 예약조회 버튼을 클릭하면 예약조회화면으로 이동합니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br/>
 
-### `npm run eject`
+## 적용 기술 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
++  javascript, react, react-router-dom, axios, styled-components, styled-reset,
+ react-icons
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<br/>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 폴더 구조
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- src 
+  - pages 폴더
+    - 해당페이지 폴더
+      - 해당페이지 component 폴더 (컴포넌트가 있다면)
+        - componet 파일
+      - 해당페이지 JS 파일
+  - Router.js
+  - index.js
+  - reportWebVitals.js
+  - setupTests.js
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+📦src
+ ┣ 📂pages
+ ┃ ┣ 📂bookablelist
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┗ 📜BookableCard.js
+ ┃ ┃ ┗ 📜BookableList.js
+ ┃ ┣ 📂booking
+ ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┣ 📜BookingModal.js
+ ┃ ┃ ┃ ┗ 📜CancleModal.js
+ ┃ ┃ ┗ 📜Booking.js
+ ┃ ┗ 📂searchBooking
+ ┃ ┃ ┗ 📜SearchBooking.js
+ ┣ 📂styles
+ ┃ ┣ 📜GlobalStyle.js
+ ┃ ┗ 📜theme.js
+ ┣ 📜Router.js
+ ┣ 📜index.js
+ ┣ 📜reportWebVitals.js
+ ┗ 📜setupTests.js
+ ```
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+<br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 기능 소개
 
-### Making a Progressive Web App
+### 1. 예약가능목록 페이지
+- 예약가능한 목록을 카드로 나타냅니다.
+- 해당하는 상품에 어떤 예약종류(상담, 진료, 검진)가 예약가능한 지 한눈에 확인할 수 있습니다.
+- 예약조회페이지로 이동가능한 버튼을 구현했습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 2. 예약등록 페이지
+- 선택한 상품을 예약할 수 있습니다. 예약자이름, 예약종류, 예약시간을 입력가능합니다.
+- 정보를 모두 입력해야 예약버튼이 활성화됩니다.
+- 예약하기를 한번 눌러서 예약하면 중복예약이 불가합니다.
+- 예약취소버튼으로 예약을 취소하고 다시 예약해 볼 수 있습니다. (테스트용)
+- 노쇼 고객인 경우/ 노쇼 고객이 아닌 경우를 버튼을 이용해서 확인할 수 있습니다. (테스트용)
 
-### Advanced Configuration
+### 3. 예약내역조회 페이지
+- 예약샘플을 이용해서 조회할 수 있습니다. 
+- 예약번호 또는 예약자 성함으로 예약조회가 가능합니다.
+- 예약 번호 또는 예약자 성함을 정확하게 입력해야 합니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br/>
+
+##  기능 및 코드 설명
+
+####  노쇼고객 방지 기능
+> 노쇼고객인 경우/ 노쇼고객이 아닌 경우를 버튼을 이용해서 조절가능합니다.\
+> 백엔드가 없기 때문에 localStorage의 값을 이용했습니다. \
+> 노쇼고객이 아닌 경우에는 localStorage 'token'에 'notNoShow'라는 값을 주었고,\
+> 노쇼고객인 경우에는 'token'을 삭제해서 토큰의 유무에 따라 노쇼고객을 판별했습니다.\
+> 실제로는 백엔드에서 회원의 noShow여부를 데이터로 받아와서 그 데이터에 따라
+>\
+>노쇼고객을 판별할 수 있습니다.
+
+#### 예약내역조회 기능
+> 예약샘플을 목데이터로 만들어서 조회기능을 구현했습니다.\
+> 예약내역 하나하나마다 고유의 예약번호가 있고, \
+> 한 회원은 하나의 예약만 가능하기 때문에\
+> 예약자 성함이나 예약번호로 조회할 수 있습니다. \
+> 실제로는 백엔드에서 예약번호, 예약자성함, 예약정보가 담겨진 예약목록을 받아와 조회할 수 있습니다. 
+
+
+
+
+
+  <br/>
+
+
+## Reference
+
+- 이 프로젝트는 비영리목적의 기업협업 과제 제출용으로 제작한 프로젝트입니다.
+- 실무수준의 프로젝트이지만 학습용으로 만들었기 때문에 이 코드를 활용하여 이득을 취하거나 무단 배포할 경우 법적 문제가 있을 수 있습니다.
