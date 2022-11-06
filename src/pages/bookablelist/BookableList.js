@@ -27,10 +27,13 @@ const BookableList = () => {
         <GrCursor size={25} />
       </button>
       <div className="bookable-list">
-        {bookableProducts.length &&
+        {bookableProducts.length ? (
           bookableProducts.map((product) => {
             return <BookableCard key={product.id} product={product} />;
-          })}
+          })
+        ) : (
+          <></>
+        )}
       </div>
     </ListContainer>
   );
