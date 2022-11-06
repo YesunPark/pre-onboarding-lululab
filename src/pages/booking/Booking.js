@@ -16,12 +16,11 @@ const Booking = () => {
   const [openCancleModal, setOpenCancleModal] = useState(false);
   const [isNoShowUser, setIsNoShowUser] = useState(true);
 
-  const getParameter = (key) => {
-    return new URLSearchParams(location.search).get(key);
-  };
-
   useEffect(() => {
-    setUserHandledInfo({ ...userHandledInfo, type: getParameter('type') });
+    const getParameter = (key) => {
+      return new URLSearchParams(location.search).get(key);
+    };
+    setUserHandledInfo({ type: getParameter('type') });
   }, []);
 
   useEffect(() => {
