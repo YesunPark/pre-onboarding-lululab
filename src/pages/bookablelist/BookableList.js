@@ -26,7 +26,7 @@ const BookableList = () => {
         예약내역 조회하러 가기
         <GrCursor size={25} />
       </button>
-      <div className="list">
+      <div className="bookable-list">
         {bookableProducts.length &&
           bookableProducts.map((product) => {
             return <BookableCard key={product.id} product={product} />;
@@ -51,7 +51,7 @@ const ListContainer = styled.div`
     }
   }
 
-  .list {
+  .bookable-list {
     display: flex;
     flex-wrap: wrap;
   }
